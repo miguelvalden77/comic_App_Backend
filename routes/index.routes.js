@@ -7,6 +7,9 @@ router.get("/", (req, res, next) => {
 const authRoutes = require("./auth.routes ")
 router.use("/auth", authRoutes)
 
+const CharRoutes = require("./characters.routes")
+router.use("/character", CharRoutes)
+
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)
 

@@ -1,7 +1,8 @@
-const router = require("express").Router();
+const router = require("express").Router()
 const User = require("../models/User.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const isAuth = require("../middlewares/isAuth")
 
 
 router.post("/register", async (req, res, next)=>{
@@ -67,11 +68,25 @@ router.post("/login", async (req, res, next)=>{
             return
         }
 
-        res.json({usuario: usernameLower})
+        const payload = {
+            _id: foundUser._id,
+            username: foundUser.username,
+            comics: foundUser.comics
+        }
+
+        const authToken = jwt.sign(payload, process.env.SECRET_KEY, {algorithm: "HS256", expiresIn: "4h"})
+
+        res.json({authToken: authToken})
     }
     catch(error){
-        console.log(error)
+        next(error)
     }
+
+})
+
+router.get("/verify", isAuth, (req, res, next)=>{
+
+    res.json(req.payload)
 
 })
 
