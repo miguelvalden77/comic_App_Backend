@@ -13,8 +13,7 @@ const userSchema = new Schema(
       required: true
     },
     comics: {
-      type: [String],
-      default: []
+      type: [String]
     }
   },
   {
