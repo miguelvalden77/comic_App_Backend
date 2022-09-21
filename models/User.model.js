@@ -12,7 +12,7 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    comics: {
+    comicArr: {
       type: [String]
     }
   },
