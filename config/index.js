@@ -23,7 +23,7 @@ module.exports = (app) => {
   app.use(
     cors({
       credentials: true,
-      origin: process.env.ORIGIN || "https://charactermarvel.netlify.app/",
+      origin: process.env.ORIGIN || "https://charactermarvel.netlify.app/"
     })
   );
 
